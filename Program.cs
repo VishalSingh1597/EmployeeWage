@@ -8,32 +8,34 @@ namespace EmployeeWage
 {
     class Program
     {
-        public const int FullTime = 1;                                        //creating a local variable
-        public const int PartTime = 2;
-        public const int empRatePerHour = 20;
-        public const int empWorkingDaysPerMonth = 20;
+        //constants
+        public const int Full_TIME = 1;
+        public const int PART_TIME = 2;
+        public const int EMP_RATE_PER_HR = 20;
+        public const int WORKING_DAYS = 20;
         static void Main(string[] args)
         {
-            //Local Variables
+            //local variables
             int empHrs = 0;
             int empWage = 0;
+            int totalEmpWage = 0;
 
-            Random random = new Random();                               //Generating Random value
-
-            while (empHrs <= 100 || empWorkingDaysPerMonth <= 20)
+            //inbuilt class
+            Random random = new Random();
+            for (int day = 0; day < WORKING_DAYS; day++)
             {
+                int employeeCheck = random.Next(0, 3);
 
-                int employeeCheck = random.Next(0, 3);                      // assigning Random value to the variable 
-                Console.WriteLine("Random Value: " + employeeCheck);
+                //Console.WriteLine("random value " + employeeCheck);
+                //selection statements
 
-                //USING SWITCH STATEMENT
                 switch (employeeCheck)
                 {
-                    case FullTime:
+                    case Full_TIME:
                         empHrs = 8;
                         break;
 
-                    case PartTime:
+                    case PART_TIME:
                         empHrs = 4;
                         break;
 
@@ -41,12 +43,12 @@ namespace EmployeeWage
                         empHrs = 0;
                         break;
                 }
-
                 //computation
-                empWage = empRatePerHour * empHrs * empWorkingDaysPerMonth;
-                Console.WriteLine("Employee wage per day: " + empWage);
-                Console.Read();
+                empWage = EMP_RATE_PER_HR * empHrs;
+                totalEmpWage += empWage;//totalEmpWage=totalWage+empWage
             }
+            Console.WriteLine("Emp wage for 20 days " + totalEmpWage);
+            Console.Read(); ;
         }
     }
 }
