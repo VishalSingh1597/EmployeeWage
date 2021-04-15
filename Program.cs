@@ -7,44 +7,46 @@ using System.Threading.Tasks;
 namespace EmployeeWage
 {
     class Program
-    { 
+    {
+        public const int FullTime = 1;                                        //creating a local variable
+        public const int PartTime = 2;
+        public const int empRatePerHour = 20;
+        public const int empWorkingDaysPerMonth = 20;
         static void Main(string[] args)
         {
-                //Constant Variable
-                int FullTime = 1;                                        //creating a local variable
-                int PartTime = 2;
-                int empRatePerHour = 20;
+            //Local Variables
+            int empHrs = 0;
+            int empWage = 0;
 
-                //Local Variables
-                int empHrs = 0;
-                int empWage = 0;
+            Random random = new Random();                               //Generating Random value
 
-                Random random = new Random();                           //Generating Random value
-                int employeeCheck = random.Next(0, 3);                  // assigning Random value to the variable 
+            while (empHrs <= 100 || empWorkingDaysPerMonth <= 20)
+            {
+
+                int employeeCheck = random.Next(0, 3);                      // assigning Random value to the variable 
                 Console.WriteLine("Random Value: " + employeeCheck);
 
+                //USING SWITCH STATEMENT
+                switch (employeeCheck)
+                {
+                    case FullTime:
+                        empHrs = 8;
+                        break;
 
-                if (employeeCheck == FullTime)                          //Checking whether Employee is Present or Not
-                {
-                    Console.WriteLine("Employee is PRESENT");
-                    empHrs = 8;
-                }
-                else if (employeeCheck == PartTime)
-                {
-                    Console.WriteLine("Part Time Empoyee: ");
-                    empHrs = 4;
-                }
-                else
-                {
-                    Console.WriteLine("Employess is ABSENT");
-                    empHrs = 0;
+                    case PartTime:
+                        empHrs = 4;
+                        break;
+
+                    default:
+                        empHrs = 0;
+                        break;
                 }
 
                 //computation
-                empWage = empRatePerHour * empHrs;
+                empWage = empRatePerHour * empHrs * empWorkingDaysPerMonth;
                 Console.WriteLine("Employee wage per day: " + empWage);
                 Console.Read();
             }
-
         }
     }
+}
