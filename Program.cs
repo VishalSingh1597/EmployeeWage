@@ -8,6 +8,7 @@ namespace EmployeeWage
 {
     class Program
     {
+
         //constants
         public const int Full_TIME = 1;
         public const int PART_TIME = 2;
