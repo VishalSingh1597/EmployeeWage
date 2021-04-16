@@ -6,59 +6,64 @@ using System.Threading.Tasks;
 
 namespace EmployeeWage
 {
-    class Program
+    public class Program
     {
-        public const int FULL_TIME = 1;     //Constant variable
+        //constants
+        public const int Full_TIME = 1;
         public const int PART_TIME = 2;
-        public const int EMP_RATE_PER_HOUR = 20;
-        public const int NUM_OF_WORKING_DAYS = 20;
-        public const int MAX_WORKING_HRS = 100;
-        public const int MAX_WORKING_DAYS = 20;
+        //public const int EMP_RATE_PER_HR = 20;
+        //public const int MAX_WORKING_DAYS = 20;
+        //public const int MAX_WORKING_HRS = 100;
 
-        public static int ComputeEmployeeWage()
+        public static void ComputeWage(String companyName, int wagePerHour, int maxWorkingDays, int maxWorkingHours)
         {
-            int emphrs = 0;
+            //local variables
+            int empHrs = 0;
             int empWage = 0;
-            int totalempwage = 0;
+            int totalEmpWage = 0;
             int hrs = 0;
-            int workingDays = 1;
-            Random random = new Random();       //Random Class
-            while (hrs < MAX_WORKING_HRS && workingDays <= MAX_WORKING_DAYS)
-            // for (int Day = 0; Day < NUM_OF_WORKING_DAYS; Day++)
-            {
+            int WorkingDays = 1;
 
-                workingDays++;
-                int EmpCheack = random.Next(0, 3);      //Random Generate 0 ,1,2
-                switch (EmpCheack)          //Switch case Statment
+
+            //inbuilt class
+            Random random = new Random();
+            while (hrs < maxWorkingHours && WorkingDays <= maxWorkingDays)
+            {
+                WorkingDays++;
+                int employeeCheck = random.Next(0, 3);
+
+                //Console.WriteLine("random value " + employeeCheck);
+
+                //selection statements
+
+                switch (employeeCheck)
                 {
-                    case FULL_TIME:         //Employee is FullTime=1
-                        emphrs = 8;
+                    case Full_TIME:
+                        empHrs = 8;
                         break;
-                    case PART_TIME:          //Employee is FullTime=2
-                        emphrs = 4;
+
+                    case PART_TIME:
+                        empHrs = 4;
                         break;
+
                     default:
-                        emphrs = 0;
+                        empHrs = 0;
                         break;
                 }
-
-                empWage = EMP_RATE_PER_HOUR * emphrs;            // Calculate empWage
-                hrs += emphrs;                                           //Display empwage
-                totalempwage = totalempwage + empWage;      //Calculate total employe month wage
+                //computation
+                empWage = wagePerHour * empHrs;
+                hrs = empHrs;
+                totalEmpWage += empWage;//totalEmpWage=totalWage+empWage
             }
-            Console.WriteLine("Employe Wage Per Day :- " + empWage);
-            Console.WriteLine("Total Employe Month Wage :- " + totalempwage);
-            Console.WriteLine("Employee wage for " + workingDays + " days " + totalempwage);
-            Console.WriteLine("Working hours " + hrs);
-            return totalempwage;
+            Console.WriteLine("Emp wage for " + companyName + "\t is\t" + totalEmpWage);
 
         }
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
-            Program.ComputeEmployeeWage();
+            ComputeWage("Demart", 20, 20, 40);
+            ComputeWage("Reliance", 15, 15, 30);
+            Console.Read();
+
         }
-
-
-
     }
 }
